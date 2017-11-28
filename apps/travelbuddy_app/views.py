@@ -88,7 +88,7 @@ def trippage(request, url_id):
     trip = trips.objects.get(id=url_id)
     logged_username = request.session['username']
     logged_user = users.objects.get(username=logged_username)
-    attendees= trips.tripgoers.all()
+    attendees= trip.tripgoers.all()
     context = {
     'user': logged_user,
     'trip': trip,

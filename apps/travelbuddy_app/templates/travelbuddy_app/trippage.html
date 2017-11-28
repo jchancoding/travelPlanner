@@ -10,12 +10,12 @@
 
     <h1>{{ trip.destination }}</h1>
 
-    <p>{{ trip.created_by }}</p>
+    <p>{{ trip.created_by.name }}</p>
     <p>Description: {{ trip.desc }}</p>
     <p>Travel Date From: {{ trip.str_date }}</p>
     <p>Travel Date To: {{ trip.end_date }}</p>
 
-    <h2>Other uesrs joining the trip:</h2>
+    <h2>Other users joining the trip:</h2>
     {% for users in attendees %}
       <p>{{ users.name }}</p>
     {% endfor %}
