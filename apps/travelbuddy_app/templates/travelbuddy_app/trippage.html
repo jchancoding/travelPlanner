@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Trip Page</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+    <h1>{{ trip.destination }}</h1>
+
+    <p>{{ trip.created_by }}</p>
+    <p>Description: {{ trip.desc }}</p>
+    <p>Travel Date From: {{ trip.str_date }}</p>
+    <p>Travel Date To: {{ trip.end_date }}</p>
+
+    <h2>Other uesrs joining the trip:</h2>
+    {% for users in attendees %}
+      <p>{{ users.name }}</p>
+    {% endfor %}
+
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+
+  </body>
+</html>

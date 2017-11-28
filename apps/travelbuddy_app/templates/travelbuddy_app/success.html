@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Success</title>
+  </head>
+  <body>
+
+    <h1>Success! Welcome, {{ name }}</h1>
+    <p>Successfully registered (or logged in)!</p>
+
+    <form class="Delete" action="/delete" method="post">
+      {% csrf_token %}
+      <input type="submit" name="Delete" value="Delete yourself">
+    </form>
+
+    <form class="dash" action="/dashboard" method="post">
+      {% csrf_token %}
+      <input type="submit" name="manage_wish" value="Manage Trips">
+    </form>
+
+    <a href="/tripgroups/create">Add Trip</a>
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+
+  </body>
+</html>

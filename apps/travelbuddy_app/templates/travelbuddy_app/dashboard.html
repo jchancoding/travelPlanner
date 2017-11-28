@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Success</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+    <h1>Hello {{ name }}!</h1>
+
+    <h2>Your Trip Schedules:</h2>
+    <table class="triplist">
+      <tr>
+        <th>Destination</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Plan</th>
+        <th>Action</th>
+      </tr>
+      {% if my_trips %}
+        {% for my_trip in my_trips %}
+          <tr>
+            <td><a href="/tripgroups/{{ my_trip.id }}">{{ my_trip.destination }}</a></td>
+            <td>{{ my_trip.str_date }}</td>
+            <td>{{ my_trip.end_date }}</td>
+            <td>{{ my_trip.desc }}</td>
+            {% if my_trip.created_by == current_user %}
+            <td><a href="tripgroups/delete/{{ my_trip.id }}">Delete Item</a></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </table>
+
+
+    <h2>Other Users' Wish List:</h2>
+    <table class="triplist">
+      <tr>
+        <th>Name</th>
+        <th>Destination</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Join Group?</th>
+        <th>Action</th>
+      </tr>
+      {%if all_trips %}
+        {% for trip in all_trips %}
+          {% if trip not in my_trips %}
+          <tr>
+            <td>{{ trip.created_by.name }}</td>
+            <td><a href="/tripgroups/{{ trip.id }}">{{ trip.destination }}</a></td>
+            <td>{{ trip.str_date }}</td>
+            <td>{{ trip.end_date }}</td>
+            <td><a href="/tripgroups/add/{{ trip.id }}">Join Trip</a></td>
+            {% if trip.created_by == current_user %}
+            <td><a href="/tripgroups/delete/{{ trip.id }}">Cancel Trip</a></td>
+            {% endif %}
+          </tr>
+          {% endif %}
+         {% endfor %}
+       {% endif %}
+    </table>
+<hr>
+    <a href="/tripgroups/create">Add Travel Plan</a>
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+
+  </body>
+</html>

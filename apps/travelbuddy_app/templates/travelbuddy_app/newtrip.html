@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Create Trip</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+
+    <h1>Add a Trip</h1>
+
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <form class="newtrip" action="/createtrip" method="post">
+      {% csrf_token %}
+      <ul>
+        <li>Destination: <input type="text" name="tripdest" value=""></li>
+        <li>Description: </li>
+        <textarea name="description" rows="5" cols="80"></textarea>
+        <li>Travel Date From: <input type="date" name="strdate" value=""></li>
+        <li>Travel Date To: <input type="date" name="enddate" value=""></li>
+      </ul>
+      <input type="submit" name="submititem" value="Add">
+    </form>
+
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+
+  </body>
+</html>
